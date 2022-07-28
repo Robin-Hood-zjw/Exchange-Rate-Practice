@@ -1,32 +1,44 @@
 // online libraries
-import React from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
 import moment from "moment";
 import { Calendar } from "antd";
 
 // Local libraries
-import "../style.css";
+import "../styles.css";
 import ExchangeCurrency from "./ExchangeCurrency";
 
-class App extends React.Component {
-  state = { date: "" };
+const App = () => {
+  const [date, setDate] = useState("");
 
-  tweakDate = (newDate) =>
-    this.setState({ date: moment(newDate).format("YYYY-MM-DD") });
+  return (
+    <div>
+      <Calendar
+        fullscreen={false}
+        onChange={(date) => setDate(moment(date).format("YYYY-MM-DD"))}
+      />
+      <ExchangeCurrency date={date} />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <Calendar
-          fullscreen={false}
-          value={this.state.date}
-          onChange={(date) => this.tweakDate(date)}
-        />
+// class App extends React.Component {
+//   state = { date: "" };
 
-        <ExchangeCurrency date={this.state.date} />
-      </div>
-    );
-  }
-}
+//   tweakDate = (newDate) =>
+//     this.setState({ date: moment(newDate).format("YYYY-MM-DD") });
+
+//   render() {
+//     return (
+//       <div>
+//         <Calendar
+//           fullscreen={false}
+//           onChange={(date) => this.tweakDate(date)}
+//         />
+//         <ExchangeCurrency date={this.state.date} />
+//       </div>
+//     );
+//   }
+// }
 
 export default App;
