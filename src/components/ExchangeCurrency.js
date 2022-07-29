@@ -32,16 +32,6 @@ const ExchangeCurrency = (props) => {
     }
   };
 
-  // side effect of the first render
-  useEffect(() => {
-    fetchCurRate();
-  }, []);
-
-  // side effect of each render
-  useEffect(() => {
-    fetchCurRate();
-  });
-
   // side effect of each props' change
   useEffect(() => {
     setDate(props.date);
